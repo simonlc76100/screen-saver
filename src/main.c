@@ -1,6 +1,6 @@
-#include <stdlib.h>
+#include <stdio.h>
 #include <constants.h>
-#include "commandParser.h"
+#include <commandParser.h>
 
 int main(int argc, char *argv[])
 {
