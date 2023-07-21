@@ -11,16 +11,20 @@ OBJ = $(SRC:$(PATH_SRC)%.c=$(PATH_OBJ)%.o)
 all: $(PATH_BIN)$(NAME)
 
 $(PATH_BIN)$(NAME): $(OBJ)
-	gcc $(FLAG) $(OBJ) -o $(PATH_BIN)$(NAME)  # Ici, ajoutez le chemin $(PATH_BIN) devant le $(NAME)
+	gcc $(FLAG) $(OBJ) -o $(PATH_BIN)$(NAME)
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.c
+	@mkdir -p $(PATH_OBJ)
+	@mkdir -p $(PATH_BIN)
 	gcc $(FLAG) $(OPTION) -c $< -o $@
 
 clean:
 	/bin/rm -f $(OBJ)
+	/bin/rm -rf $(PATH_OBJ)
 
 fclean: clean
 	/bin/rm -f $(PATH_BIN)$(NAME)
+	/bin/rm -rf $(PATH_BIN)
 
 re: fclean all
 
