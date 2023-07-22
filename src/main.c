@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     if (result != 0)
     {
         printf("Error while parsing arguments\n");
-        return -1;
+        return 1;
     }
 
     return 0;

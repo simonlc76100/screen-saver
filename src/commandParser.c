@@ -2,19 +2,28 @@
 #include <constants.h>
 #include <commandParser.h>
 #include <stdio.h>
+#include <string.h>
 
 int parse_arguments(int argc, char *argv[], char **pbm_file_path, int *display_mode, char **airplane_file_path)
 {
 
     *pbm_file_path = NULL;
     *airplane_file_path = NULL;
-
     *display_mode = STATIC;
 
-    for (int i = 0; i < argc; i++)
+    for (int i = 1; i < argc; i++)
     {
-        printf("%s", argv[i]);
+        if (argv[i][0] != '-')
+            return 1;
+        else
+        {
+            if (strcmp(argv[i], "--static") == 0 || strcmp(argv[i], "-s") == 0)
+                *display_mode = STATIC;
+            else if (strcmp(argv[i], "--dynamic") == 0 || strcmp(argv[i], "-d") == 0)
+                *display_mode = DYNAMIC;
+            else if (strcmp(argv[i], "--interactive") == 0 || strcmp(argv[i], "-i") == 0)
+                *display_mode = INTERACTIVE;
+        }
     }
-
     return 0;
 }
