@@ -4,18 +4,28 @@
 
 int main(int argc, char *argv[])
 {
-    char *pbm_file_path = NULL;
-    char *airplane_file_path = NULL;
+    int display_mode = 0;
+    char *pbm_file_name = "dinosaur";
 
-    int display_mode = STATIC;
+    int result = parse_arguments(argc, argv, &display_mode, &pbm_file_name);
 
-    int result = parse_arguments(argc, argv, &pbm_file_path, &display_mode, &airplane_file_path);
-
-    if (result != 0)
+    switch (result)
     {
-        printf("Error while parsing arguments\n");
-        return 1;
+    case 1:
+        printf("%s", "No arguments passed\n");
+        break;
+    case 2:
+        printf("%s", "Error while parsing arguments\n");
+        break;
+    case 3:
+        printf("%s", "Invalid display mode\n");
+        break;
+    case 4:
+        printf("%s", "The file doesn't exist\n");
+        break;
+    case 5:
+        printf("%s", "No file specified\n");
+        break;
     }
-
     return 0;
 }

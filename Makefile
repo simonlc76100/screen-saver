@@ -1,6 +1,6 @@
 NAME = screensaver
 PATH_SRC = ./src/
-PATH_BIN = ./bin/
+PATH_BIN = ./
 PATH_OBJ = ./obj/
 HEADER = ./includes/
 FLAG = -Wall -Wextra -Werror
@@ -24,7 +24,6 @@ clean:
 
 fclean: clean
 	/bin/rm -f $(PATH_BIN)$(NAME)
-	/bin/rm -rf $(PATH_BIN)
 
 re: fclean all
 
