@@ -6,7 +6,6 @@
 #include <unistd.h>
 
 const char *display_modes[] = {"--static", "-s", "--dynamic", "-d", "--interactive", "-i"};
-char file_path[255];
 
 int is_valid_display_mode(const char *arg)
 {
@@ -22,7 +21,7 @@ int is_valid_display_mode(const char *arg)
     return 0;
 }
 
-int parse_arguments(int argc, char *argv[], int *display_mode, char **pbm_file_name)
+int parse_arguments(int argc, char *argv[], int *display_mode, char **pbm_file_path)
 {
     *display_mode = 0;
 
@@ -45,13 +44,13 @@ int parse_arguments(int argc, char *argv[], int *display_mode, char **pbm_file_n
                         if (argc > 3)
                         {
 
-                            *pbm_file_name = argv[3];
+                            *pbm_file_path = (char *)malloc(strlen(ASSET_STATIC_PATH) + strlen(argv[3]));
 
-                            strcpy(file_path, ASSET_STATIC_PATH);
-                            strcat(file_path, argv[3]);
-                            strcat(file_path, ".pbm");
+                            strcpy(*pbm_file_path, ASSET_STATIC_PATH);
+                            strcat(*pbm_file_path, argv[3]);
+                            strcat(*pbm_file_path, ".pbm");
 
-                            if (access(file_path, F_OK) == 0)
+                            if (access(*pbm_file_path, F_OK) == 0)
                             {
                                 return 0;
                             }
