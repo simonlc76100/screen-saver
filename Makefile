@@ -8,6 +8,9 @@ OPTION = -I $(HEADER)
 SRC = $(PATH_SRC)main.c $(PATH_SRC)commandParser.c $(PATH_SRC)inputHandler.c $(PATH_SRC)screenSaver.c
 OBJ = $(SRC:$(PATH_SRC)%.c=$(PATH_OBJ)%.o)
 
+include .env
+export $(shell sed 's/=.*//' .env)
+
 all: $(PATH_BIN)$(NAME)
 
 $(PATH_BIN)$(NAME): $(OBJ)
