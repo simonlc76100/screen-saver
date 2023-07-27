@@ -27,41 +27,37 @@ int parse_arguments(int argc, char *argv[], int *display_mode, char **pbm_file_p
 
     if (argc < 2)
         return 1;
-    for (int i = 1; i < argc; i++)
+    if (argv[1][0] != '-')
+        return 2;
+    else
     {
-        if (argv[i][0] != '-')
-            return 2;
+        if (is_valid_display_mode(argv[1]) == 0)
+            return 3;
         else
         {
-            if (is_valid_display_mode(argv[1]) == 0)
-                return 3;
-            else
+            if (argc > 3)
             {
-                if (argc > 2)
+                if ((strcmp(argv[2], "--file") == 0 || strcmp(argv[2], "-f") == 0))
                 {
-                    if (strcmp(argv[2], "--file") == 0 || strcmp(argv[2], "-f") == 0)
                     {
-                        if (argc > 3)
-                        {
 
-                            *pbm_file_path = (char *)malloc(strlen(ASSET_STATIC_PATH) + strlen(argv[3]));
+                        *pbm_file_path = (char *)malloc(strlen(ASSET_STATIC_PATH) + strlen(argv[3]));
 
-                            strcpy(*pbm_file_path, ASSET_STATIC_PATH);
-                            strcat(*pbm_file_path, argv[3]);
-                            strcat(*pbm_file_path, ".pbm");
+                        strcpy(*pbm_file_path, ASSET_STATIC_PATH);
+                        strcat(*pbm_file_path, argv[3]);
+                        strcat(*pbm_file_path, ".pbm");
 
-                            if (access(*pbm_file_path, F_OK) == 0)
-                            {
-                                return 0;
-                            }
-                            else
-                                return 4;
-                        }
+                        if (access(*pbm_file_path, F_OK) == 0)
+                            return 0;
                         else
-                            return 5;
+                            return 4;
                     }
                 }
+                else
+                    return 5;
             }
+            else
+                return 5;
         }
     }
     return 0;

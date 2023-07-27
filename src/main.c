@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     int display_mode = 0;
-    char *pbm_file_path = "./assets/screensaver_static/dinosaur.pbm";
+    char *pbm_file_path = NULL;
 
     int result = parse_arguments(argc, argv, &display_mode, &pbm_file_path);
 
