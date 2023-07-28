@@ -41,7 +41,7 @@ int parse_arguments(int argc, char *argv[], int *display_mode, char **pbm_file_p
                 {
                     {
 
-                        *pbm_file_path = (char *)malloc(strlen(ASSET_STATIC_PATH) + strlen(argv[3]));
+                        *pbm_file_path = (char *)malloc(strlen(ASSET_STATIC_PATH) + strlen(argv[3]) + strlen(".pbm") + 1);
 
                         strcpy(*pbm_file_path, ASSET_STATIC_PATH);
                         strcat(*pbm_file_path, argv[3]);
