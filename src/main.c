@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <constants.h>
 #include <commandParser.h>
+#include <screenSaver.h>
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
     switch (result)
     {
     case 0:
-        printf("%s", pbm_file_path);
+        display_image(pbm_file_path);
         break;
     case 1:
         printf("%s", "No arguments passed\n");
